@@ -1,0 +1,16 @@
+{
+  "scene": {
+    "number": 1,
+    "allObject": [
+      {
+        "type": "Object3D",
+        "name": "import01",
+        "data": {
+          "material": {
+            "color": "0x547824"
+          }
+        }
+      }
+    ]
+  }
+}

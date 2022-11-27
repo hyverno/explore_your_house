@@ -1,0 +1,93 @@
+import * as THREE from 'three'
+import { renderer } from './renderer'
+import {scene} from "./scene";
+
+const canvas = document.querySelector('canvas.webgl')
+const parent = canvas.parentElement
+let sizes = {
+    width: parent.clientWidth,
+    height: parent.clientHeight
+}
+
+const cursorPosition = {
+    x: null,
+    y: null
+}
+
+interface itf_export_file {
+    outline: (THREE.Mesh | THREE.Object3D)[]
+}
+export let export_file: Object = {}
+export const allOutlineContent: (THREE.Mesh | THREE.Object3D)[] = []
+
+export function set_export_file() {
+    let objectArray: (THREE.Mesh | THREE.Object3D)[] = []
+
+    allOutlineContent.map((element) => {
+        let type: String
+        let position: THREE.Vector3
+        let rotation: THREE.Euler
+    
+        if (element instanceof THREE.Mesh) {
+
+            type = element.geometry.type
+            position = element.position
+            rotation = element.rotation
+        } else if (element instanceof THREE.Object3D) {
+
+            const children = element.children[0]
+            position = element.position
+            rotation = element.rotation
+
+            if (children instanceof THREE.Mesh) {
+                type = children.geometry.type
+            }
+        }
+
+        if (element instanceof THREE.Mesh || element instanceof THREE.Object3D) {
+
+            const item: Object | any = 
+            {
+                config: {
+                    type: type,
+                    position: position,
+                    rotation: rotation
+                },
+                userData: element.userData
+            }
+    
+            if (item instanceof Object) {
+                objectArray.push(item)
+            }
+        }
+    })
+
+    export_file = objectArray
+    
+    // console.log(export_file)
+}
+
+export function add_outline_content(element: THREE.Mesh | THREE.Object3D) {
+    allOutlineContent.push((element as THREE.Mesh | THREE.Object3D))
+    set_export_file()
+}
+
+
+function updateSize() {
+    const canvas = document.querySelector('canvas.webgl')
+    // const parent = canvas.parentElement
+    sizes.width = parent.clientWidth
+    sizes.height = parent.clientHeight
+}
+
+export let mouse: any
+
+window.addEventListener('mousemove', (event) => {
+    cursorPosition.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
+    cursorPosition.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
+    mouse = {
+        x: (event.clientX / renderer.domElement.clientWidth) * 2 - 1,
+        y: -(event.clientY / renderer.domElement.clientHeight) * 2 + 1,
+    }
+})
+export { sizes, cursorPosition, parent, updateSize }

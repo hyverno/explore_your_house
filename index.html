@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+</head>
+
+<body>
+    <div id="App">
+        <div class="top">
+            <nav>
+                <div class="logo">
+                </div>
+                <div class="file">
+                    <p id="save">File</p>
+                    <div class="extra">
+                        <button id="save_export">export</button>
+                        <input type="file" id="save_import">
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="middle">
+            <div class="panel">
+                <div class="geometry overA1">
+                    G
+                </div>
+                <div class="import overA1">
+                    I
+                </div>
+            </div>
+            <div class="context">
+                <canvas class="webgl"></canvas>
+            </div>
+            <div class="settings">
+                <div class="content">
+                    <div class="header">
+                        <h2>Outliner</h2>
+                    </div>
+                    <div id="outliner">
+                    </div>
+                    <div id="params">
+                        <p>
+                            params
+                        </p>
+                        <div class="data"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

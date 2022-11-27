@@ -1,0 +1,154 @@
+@import './App/styles/components/interfaces';
+
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+$br-size: 2px;
+$br-style: $br-size solid #b5b5b5;
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Varela Round', sans-serif;
+}
+body {
+    overflow: hidden;
+}
+
+#App {
+    width: 100vw;
+    height: 100vh;
+}
+
+.top {
+    width: 100%;
+    height: calc(60px - $br-size);
+    background-color: #242424;
+    border-bottom: $br-style;
+    nav {
+        display: flex;
+        align-items: center;
+        color: whitesmoke;
+        .logo {
+            width: calc(60px - $br-size);
+            height: calc(60px - $br-size);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &::before {
+                position: absolute;
+                content: '';
+                width: 20px;
+                height: 20px;
+                overflow: hidden;
+                border-radius: 15px;
+                border: solid 7px rgb(49, 153, 49);
+            }
+        }
+    }
+}
+
+.middle {
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    .panel {
+        width: 60px;
+        height: 100%;
+        background-color: #242424;
+        border-right: $br-style;
+        div {
+            width: 60px;
+            height: calc(60px - $br-size);
+            border-bottom: $br-style;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: whitesmoke;
+            font-size: 24px;
+
+        }
+    }
+    .context {
+        width: calc(100vw - (60px + 400px) );
+        height: 100%;
+        .webgl {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .settings {
+        width: calc(400px - $br-size);
+        border-left: $br-style;
+        height: 100%;
+        background-color: #242424;
+    }
+}
+
+.settings {
+    position: relative;
+    .header {
+        width: 80%;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-left: auto;
+        margin-right: auto;
+        color: whitesmoke;
+    }
+    #params {
+        position: absolute;
+        bottom: 0;
+        height: 200px;
+        color: whitesmoke;
+    }
+    #outliner {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        color: whitesmoke;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        div {
+            width: 100%;
+            height: 30px;
+            display: flex;
+            font-size: 18px;
+            align-items: center;
+            cursor: pointer;
+            p {
+                margin-left: 10px;
+            }
+            &::before {
+                content: '>';
+                transform: rotateZ(0deg);
+                transition: all .4s;
+            }
+            &:hover::before {
+                transform: rotateZ(90deg);
+            }
+        }
+    }
+}
+
+.overA1 {
+    position: relative;
+    &::after {
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        inset: 0 0 0 0;
+        content: '';
+        transform: scaleX(0);
+        transform-origin: bottom left;
+        background-color: rgba(255, 255, 255, 0.35);
+        transition: transform .2s ease;
+    }
+    &:hover {
+        cursor: pointer;
+        &::after {
+            transform: scaleX(1);
+        }
+    }
+}

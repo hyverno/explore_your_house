@@ -1,0 +1,56 @@
+[
+    {
+        "config": {
+            "type": "PlaneGeometry",
+            "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "rotation": {
+                "_x": 0,
+                "_y": 0,
+                "_z": 0,
+                "_order": "XYZ"
+            }
+        },
+        "userData": {
+            "componentTags": "move",
+            "data": {
+                "color": "4f4f4f",
+                "scale": 1,
+                "edit": {
+                    "color": "4f4f4f",
+                    "scale": 1
+                }
+            }
+        }
+    },
+    {
+        "config": {
+            "type": "BufferGeometry",
+            "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "rotation": {
+                "_x": 0,
+                "_y": 0,
+                "_z": 0,
+                "_order": "XYZ"
+            }
+        },
+        "userData": {
+            "componentTags": "move",
+            "data": {
+                "color": "ffffff",
+                "scale": 1,
+                "edit": {
+                    "color": "ffffff",
+                    "scale": 1
+                }
+            }
+        }
+    }
+]
