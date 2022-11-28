@@ -9,7 +9,7 @@ export const listObject = {
     monkey: "monkey",
 }
 
-let id = 0
+export let id: number = 0
 
 function addShadow(element: THREE.Object3D) {
     element.castShadow = true
