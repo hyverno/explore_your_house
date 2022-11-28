@@ -2,11 +2,9 @@ import * as THREE from 'three'
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 import {scene} from "./scene";
 import {addOutlinerObject} from "./outliner";
-import {generateUUID} from "three/src/math/MathUtils";
-
 const loader = new GLTFLoader();
 
-function EDITOR_import(path) {
+function EDITOR_import(path: string) {
 
     loader.load( path, function ( gltf ) {
         const object = gltf.scene
@@ -24,14 +22,17 @@ function EDITOR_import(path) {
             index++
         })
         scene.add( object )
+        
         object.userData =
-            {
-                componentTags: "move",
-                data: {
+        {
+            componentTags: "move",
+            data: {
+                    // @ts-ignore
                     color: meshAspect.material.color.getHexString(),
                     scale: 1,
                     
                     edit: {
+                        // @ts-ignore
                         color: meshAspect.material.color.getHexString(),
                         scale: 1,
                     }

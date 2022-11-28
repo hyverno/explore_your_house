@@ -6,9 +6,9 @@ import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {TransformControls} from "three/examples/jsm/controls/TransformControls";
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 
-const canvas = document.querySelector('canvas.webgl')
+const canvas: HTMLCanvasElement | null = document.querySelector('canvas.webgl')
 const renderer = new THREE.WebGLRenderer({
-    canvas: canvas,
+    canvas: canvas as HTMLCanvasElement,
     antialias: true,
 })
 
@@ -19,7 +19,7 @@ const orbitControls = new OrbitControls(camera, renderer.domElement)
 const transformControls = new TransformControls(camera, renderer.domElement)
 scene.add(transformControls)
 
-function setTCTarget(target) {
+function setTCTarget(target: any) {
     transformControls.attach(target)
 }
 

@@ -12,7 +12,8 @@ export function getAllObjectByUserData() {
         if (e instanceof THREE.Mesh && e.userData.componentTags !== undefined || null) {
             allObject.push(e)
             return allObject
-        }
+        } else
+            return
     })
 }
 
@@ -49,26 +50,30 @@ interface IJSON {
 export function readJSONFileInput(input: HTMLInputElement) {
     let result: IJSON[] = []
 
-    const file = input.files[0]
-    const reader = new FileReader()
-    reader.readAsText(file, "UTF-8")
+    if (input.files) {
+        const file = input.files[0]
+        const reader: FileReader = new FileReader()
+        reader.readAsText(file, "UTF-8")
+        
+        reader.onload = function() {
+            if (!reader.result) return
 
-    reader.onload = function() {
-        let item: IJSON[] = JSON.parse(reader.result.toString())
-        result = item
+            let item: IJSON[] = JSON.parse(reader.result.toString())
+            result = item
 
-        allOutlineContent.forEach(element => {
-            scene.remove(element)
-            removeOutlinerObject(element.uuid)
-        });
+            allOutlineContent.forEach(element => {
+                scene.remove(element)
+                removeOutlinerObject(element.uuid)
+            });
 
-        result.map((element) => {
-            console.log(element.config.type)
-            new createObject(
-                element.config.type,
-                false,
-                element.userData.data.color,
-            )
-        })
-    }
+            result.map((element) => {
+                console.log(element.config.type)
+                new createObject(
+                    element.config.type,
+                    false,
+                    element.userData.data.color,
+                )
+            })
+        }
+    } else console.error('No file selected')
 }

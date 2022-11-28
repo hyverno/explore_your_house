@@ -1,10 +1,6 @@
 import * as THREE from 'three'
 import {scene} from "./scene";
-
 import {addOutlinerObject} from "./outliner";
-import {generateUUID} from "three/src/math/MathUtils";
-import {allOutlineContent} from "./globalVariable";
-import {MeshLambertMaterialParameters} from "three/src/materials/MeshLambertMaterial";
 
 export const listObject = {
     cube: "cube",
@@ -25,7 +21,7 @@ function addShadow(element: THREE.Object3D) {
 
 export class createObject {
     constructor(mesh: any, twoSide: boolean, colorValue: number) {
-        const meshObject = this.createMesh(mesh, twoSide)
+        const meshObject = this.createMesh(mesh, twoSide) as THREE.Mesh <any, THREE.MeshLambertMaterial>
         meshObject.material.color.setHex(colorValue)
         this.globalSettings(meshObject, 'cube')
         id ++

@@ -14,7 +14,7 @@ import {refreshParams} from "./project/outliner";
 new createObject(listObject.plane,true,0x4f4f4f)
 
 
-window.addEventListener('resize', size => {
+window.addEventListener('resize', () => {
     GB.updateSize()
     console.log(GB.sizes)
 
@@ -33,15 +33,15 @@ function tick() {
 }
 
 let a = false
-let response = []
+let response: THREE.Object3D<THREE.Event>[] = []
 
-canvas.addEventListener('click', target => {
+canvas?.addEventListener('click', () => {
     if (a === false) {
         response = []
-        scene.traverse((e) => {
+        scene.traverse((e: THREE.Object3D) => {
             if (e instanceof THREE.Mesh && e.userData.componentTags !== undefined || null) {
                 response.push(e)
-            } else if (e instanceof THREE.Mesh && e.parent.userData.componentTags !== undefined || null) {
+            } else if (e instanceof THREE.Mesh && e.parent?.userData.componentTags !== undefined || null) {
                 response.push(e)
             }
         })

@@ -1,5 +1,5 @@
 // Geometry Panel
-import {listObject, createObject} from "./createObject";
+import {createObject} from "./createObject";
 import {EDITOR_import} from './ImportGLTF'
 import {mouse} from './globalVariable'
 
@@ -30,8 +30,8 @@ function HUD_geometry() {
         aa.forEach(e => {e.remove()})
         a = true
         b = false
-        const App = document.getElementById('App');
-        App.insertAdjacentHTML('beforebegin',
+        const App = document.getElementById('App') as HTMLElement;
+        App?.insertAdjacentHTML('beforebegin',
             `
                 <div class="HUD_">
                     <div class="movable">
@@ -45,7 +45,7 @@ function HUD_geometry() {
                             <option value="sphere">
                                 Sphere
                             </option>
-                            <option value="plane">
+                            <option value="PlaneGeometry">
                                 Plane
                             </option>
                         </select>
@@ -66,19 +66,17 @@ function HUD_geometry() {
                 </div>
             `
         );
-        const res = document.querySelector('.HUD_ .add')
-        const option = document.querySelector('.HUD_ .value')
-        const side = document.querySelector('.HUD_ #side')
-        const color = document.querySelector('.HUD_ .aaa')
+        const res = document.querySelector('.HUD_ .add') as HTMLElement;
+        const option = document.querySelector('.HUD_ .value') as HTMLSelectElement;
+        const side = document.querySelector('.HUD_ #side') as HTMLInputElement;
+        const color = document.querySelector('.HUD_ .aaa') as HTMLInputElement;
+        
         res.addEventListener('click', () => {
-            const optionValue = (option["options"][option["selectedIndex"]]).value
-            const colorValue = color["value"].replace('#', '0x')
-            // @ts-ignore
-            new createObject(
-                    listObject[optionValue],
-                    side["checked"],
-                    colorValue
-                )
+            const optionValue: string = option.options[option.selectedIndex].value
+            const colorValue: number = parseInt(color.value.replace('#', '')) // 0x
+
+            // create object with option value
+            new createObject(optionValue, side.checked, colorValue)
         })
     }
     addMovable()
@@ -94,7 +92,7 @@ function HUD_import() {
         aa.forEach(e => {e.remove()})
         b = true
         a = false
-        const App = document.getElementById('App');
+        const App = document.getElementById('App') as HTMLElement;
         App.insertAdjacentHTML('beforebegin',
             `
                 <div class="HUD_">
@@ -110,10 +108,16 @@ function HUD_import() {
                 </div>
             `
         );
-        const importElement = document.querySelector('.HUD_ #import')
+        const importElement = document.querySelector('.HUD_ #import') as HTMLInputElement;
         importElement.addEventListener('change', () => {
-            console.log(importElement["files"][0])
-            const url = URL.createObjectURL(importElement["files"][0])
+            // console.log(importElement?["files"]:[0])
+
+            const result = importElement.files?.item(0) as File
+
+            const blob = new Blob([result.toString()], {type: 'application/json'});
+
+            const url = URL.createObjectURL(blob)
+            console.log(url)
             EDITOR_import(url)
         })
     }

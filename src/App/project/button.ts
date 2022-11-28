@@ -19,13 +19,13 @@ Array.from(BTN_import).forEach(element => {
     })
 })
 
-const BTN_save_export = document.querySelector('#save_export')
+const BTN_save_export = document.querySelector('#save_export') as HTMLButtonElement
 BTN_save_export.addEventListener('click', function() {
     const blob = new Blob([JSON.stringify(export_file)], {type: "text/plain;charset=utf-8"});
     FileSaver.saveAs(blob, "test.json")
 })
 
-const BTN_save_import: HTMLInputElement = document.querySelector('#save_import')
+const BTN_save_import = document.querySelector('#save_import') as HTMLInputElement
 BTN_save_import.addEventListener('change', function() {
 
     readJSONFileInput(BTN_save_import)

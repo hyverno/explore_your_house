@@ -1,22 +1,25 @@
 import * as THREE from 'three'
 import { renderer } from './renderer'
-import {scene} from "./scene";
 
-const canvas = document.querySelector('canvas.webgl')
-const parent = canvas.parentElement
+const canvas = document.querySelector('canvas.webgl') as HTMLElement
+const parent = canvas.parentElement as HTMLElement
+
 let sizes = {
     width: parent.clientWidth,
     height: parent.clientHeight
 }
 
-const cursorPosition = {
-    x: null,
-    y: null
+interface itf_cursorPosition {
+    x: number,
+    y: number
 }
 
-interface itf_export_file {
-    outline: (THREE.Mesh | THREE.Object3D)[]
+const cursorPosition: itf_cursorPosition = {
+    x: 0,
+    y: 0
 }
+
+
 export let export_file: Object = {}
 export const allOutlineContent: (THREE.Mesh | THREE.Object3D)[] = []
 
@@ -33,7 +36,7 @@ export function set_export_file() {
             type = element.geometry.type
             position = element.position
             rotation = element.rotation
-        } else if (element instanceof THREE.Object3D) {
+        } else {
 
             const children = element.children[0]
             position = element.position
@@ -41,23 +44,27 @@ export function set_export_file() {
 
             if (children instanceof THREE.Mesh) {
                 type = children.geometry.type
+            } else {
+                type = 'Group'
             }
         }
 
         if (element instanceof THREE.Mesh || element instanceof THREE.Object3D) {
 
-            const item: Object | any = 
-            {
-                config: {
-                    type: type,
-                    position: position,
-                    rotation: rotation
-                },
-                userData: element.userData
-            }
-    
-            if (item instanceof Object) {
-                objectArray.push(item)
+            
+            if (type && position && rotation) {
+                const item: Object | any = 
+                {
+                    config: {
+                        type: type,
+                        position: position,
+                        rotation: rotation
+                    },
+                    userData: element.userData
+                }
+                if (item instanceof Object) {
+                    objectArray.push(item)
+                }
             }
         }
     })
@@ -74,8 +81,6 @@ export function add_outline_content(element: THREE.Mesh | THREE.Object3D) {
 
 
 function updateSize() {
-    const canvas = document.querySelector('canvas.webgl')
-    // const parent = canvas.parentElement
     sizes.width = parent.clientWidth
     sizes.height = parent.clientHeight
 }
