@@ -16,8 +16,6 @@ function addShadow(element: THREE.Object3D) {
     element.receiveShadow = true
 }
 
-//const infos = {name: String,id: String,parent: String,}
-
 
 export class createObject {
     constructor(mesh: any, twoSide: boolean, colorValue: number) {

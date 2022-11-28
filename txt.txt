@@ -1,0 +1,6 @@
+VITE_FIREBASE_API_KEY           = AIzaSyAVDI75NQ-JhXYDE3ahqd1j5Vw4cDjqKOk
+FIREBASE_AUTH_DOMAIN            = explore-your-house.firebaseapp.com
+FIREBASE_PROJECT_ID             = explore-your-house
+FIREBASE_STORAGE_BUCKET         = explore-your-house.appspot.com
+FIREBASE_MESSAGING_SENDER_Id    = 96015257846
+FIREBASE_APP_ID                 = 1:96015257846:web:e191d407b901e3d7e71cd7

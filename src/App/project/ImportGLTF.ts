@@ -22,7 +22,7 @@ function EDITOR_import(path: string) {
             index++
         })
         scene.add( object )
-        
+
         object.userData =
         {
             componentTags: "move",

@@ -1,8 +1,10 @@
 // Panel Button
-import { HUD_geometry, HUD_import } from "./interface";
+import { HUD_geometry, HUD_import } from "../interface";
 import FileSaver from 'file-saver'
-import {export_file} from "./globalVariable";
-import {readJSONFileInput} from ".//customFunction";
+import {export_file} from "../globalVariable";
+import {readJSONFileInput} from "../customFunction";
+import * as fb from "../../services/fb";
+
 
 const BTN_geometry = document.getElementsByClassName('geometry')
 const BTN_import = document.getElementsByClassName('import')
@@ -32,4 +34,7 @@ BTN_save_import.addEventListener('change', function() {
 
 })
 
-// call api to get data
+const BTN_login = document.querySelector('#login') as HTMLButtonElement
+BTN_login.addEventListener('click', function() {
+    fb.loginWithPopup()
+})

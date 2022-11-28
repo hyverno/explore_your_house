@@ -6,7 +6,7 @@ import {scene} from './project/scene'
 import './project/settings'
 import {EDITOR_import} from "./project/ImportGLTF";
 import { listObject, createObject } from './project/createObject';
-import './project/button'
+import './project/widget/button'
 import { getAllObjectByUserData } from './project/customFunction';
 import {refreshParams} from "./project/outliner";
 
