@@ -38,7 +38,6 @@ export const auth = getAuth(app) as Auth;
  */
 
 export let login = new ob.observable(false);
-export let arr2 = new ob.observable([] as string[]);
 export const user_information = new ob.observable({});
 
 /**
@@ -155,16 +154,15 @@ export function logout () {
 }
 
 
-export function save_cloud() {
-    if(!login.get()) return console.error('You need to be logged in to save a file')
-    console.log('saving file')
-}
+// export function save_cloud() {
+//     if(!login.get()) return console.error('You need to be logged in to save a file')
+//     console.log('saving file')
+// }
 
 function if_login () {
     if(!login.get()){
         const ui = user_information
-        if(Object.keys(ui).length === 0) return false
-        else return true
+        return (Object.keys(ui).length !== 0) as boolean;
     } else {
         return true
     }

@@ -36,7 +36,7 @@ let a = false
 let response: THREE.Object3D<THREE.Event>[] = []
 
 canvas?.addEventListener('click', () => {
-    if (a === false) {
+    if (!a) {
         response = []
         scene.traverse((e: THREE.Object3D) => {
             if (e instanceof THREE.Mesh && e.userData.componentTags !== undefined || null) {

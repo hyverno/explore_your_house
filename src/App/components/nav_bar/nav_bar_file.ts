@@ -1,8 +1,7 @@
-// imort
+// import
 import { export_file } from '../../project/globalVariable'
 import { readJSONFileInput } from '../../project/customFunction'
 import * as FileSaver from 'file-saver'
-import * as fb from '../../services/fb'
 
 export class navBar {
     constructor() {
@@ -36,7 +35,7 @@ export class navBar {
 
         const save_cloud = document.querySelector('#save_cloud') as HTMLButtonElement
         save_cloud.addEventListener('click', function() {
-            fb.save_cloud(export_file)
+            // fb.save_cloud(export_file)
         })
 
         
