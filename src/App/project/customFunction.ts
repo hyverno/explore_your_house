@@ -61,7 +61,7 @@ export function readJSONFileInput(input: HTMLInputElement) {
             let item: IJSON[] = JSON.parse(reader.result.toString())
             result = item
 
-            allOutlineContent.forEach(element => {
+            allOutlineContent.get().forEach((element: THREE.Object3D<THREE.Event>) => {
                 scene.remove(element)
                 removeOutlinerObject(element.uuid)
             });

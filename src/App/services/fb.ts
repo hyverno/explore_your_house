@@ -4,13 +4,12 @@ import {getAuth,
     signInWithPopup,
     GoogleAuthProvider, 
     OAuthCredential, 
-    signInWithRedirect,
-    getRedirectResult,
-    UserCredential,
-    User,
+    // signInWithRedirect,
+    // getRedirectResult,
+    // UserCredential,
+    // User,
     Auth,
 } from 'firebase/auth';
-import { Float16BufferAttribute } from 'three';
 
 import * as ob from '../components/observer';
 
@@ -156,7 +155,7 @@ export function logout () {
 }
 
 
-export function save_cloud(file: object) {
+export function save_cloud() {
     if(!login.get()) return console.error('You need to be logged in to save a file')
     console.log('saving file')
 }
@@ -178,7 +177,8 @@ auth.onAuthStateChanged((user) => {
     console.log(user)
     console.log('onAuthStateChanged')
     if (user) {
-        user_information.set(parse_token(user.accessToken))
+        console.log(user.getIdToken())
+        // user_information.set(parse_token(user.getIdToken()))
         login.set(true)
     } else {
         login.set(false)

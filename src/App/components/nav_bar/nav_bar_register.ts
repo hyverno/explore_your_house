@@ -1,6 +1,4 @@
 import * as fb from '../../services/fb'
-import * as ob from '../observer'
-
 
 export class nav_bar_register{
     state = {
