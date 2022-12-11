@@ -10,13 +10,13 @@ import './project/widget/button'
 import { getAllObjectByUserData } from './project/customFunction';
 import {refreshParams} from "./project/outliner";
 
+import './project/widget/initialize_widget'
 
 new createObject(listObject.plane,true,0x4f4f4f)
 
 
 window.addEventListener('resize', () => {
     GB.updateSize()
-    console.log(GB.sizes)
 
     camera.aspect = GB.sizes.width / GB.sizes.height
     renderer.setSize(GB.sizes.width, GB.sizes.height)
@@ -52,9 +52,6 @@ canvas?.addEventListener('click', () => {
 
         if (intersects.length >= 1) {
             setTCTarget(intersects[ 0 ].object)
-            console.log('==== ==== ====')
-            console.log(intersects[0].object.parent)
-            console.log('==== ==== ====')
             if (intersects[0].object instanceof THREE.Mesh && intersects[0].object.userData.data) {
                 refreshParams(intersects[0].object.uuid)
             } else if (intersects[0].object.parent instanceof THREE.Group) {

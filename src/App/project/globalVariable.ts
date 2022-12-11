@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { renderer } from './renderer'
+import * as ob from '../components/observer'
 
 const canvas = document.querySelector('canvas.webgl') as HTMLElement
 const parent = canvas.parentElement as HTMLElement
@@ -21,12 +22,12 @@ const cursorPosition: itf_cursorPosition = {
 
 
 export let export_file: Object = {}
-export const allOutlineContent: (THREE.Mesh | THREE.Object3D)[] = []
+export const allOutlineContent = new ob.observable([] as (THREE.Mesh | THREE.Object3D)[])
 
 export function set_export_file() {
     let objectArray: (THREE.Mesh | THREE.Object3D)[] = []
 
-    allOutlineContent.map((element) => {
+    allOutlineContent.get().map((element: THREE.Mesh | THREE.Object3D) => {
         let type: String
         let position: THREE.Vector3
         let rotation: THREE.Euler
@@ -70,13 +71,11 @@ export function set_export_file() {
     })
 
     export_file = objectArray
-    
-    // console.log(export_file)
+    console.log(export_file)
 }
 
 export function add_outline_content(element: THREE.Mesh | THREE.Object3D) {
     allOutlineContent.push((element as THREE.Mesh | THREE.Object3D))
-    set_export_file()
 }
 
 

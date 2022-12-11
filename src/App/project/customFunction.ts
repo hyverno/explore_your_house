@@ -67,7 +67,6 @@ export function readJSONFileInput(input: HTMLInputElement) {
             });
 
             result.map((element) => {
-                console.log(element.config.type)
                 new createObject(
                     element.config.type,
                     false,

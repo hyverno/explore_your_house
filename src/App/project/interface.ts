@@ -13,7 +13,6 @@ function addMovable() {
     movableList = Array.from(document.querySelectorAll('.movable'))
     movableList.forEach(e => {
         e.addEventListener('mousemove', () => {
-            console.log(mouse.x)
             e.style.transform = `translateX(${mouse.x}px)`
         })
     });
@@ -22,7 +21,6 @@ function addMovable() {
 function HUD_geometry() {
     if (a) {
         const App = document.querySelectorAll('.HUD_');
-        console.log(App)
         App.forEach(e => {e.remove()})
         a = false
     } else {
@@ -117,7 +115,6 @@ function HUD_import() {
             const blob = new Blob([result.toString()], {type: 'application/json'});
 
             const url = URL.createObjectURL(blob)
-            console.log(url)
             EDITOR_import(url)
         })
     }
